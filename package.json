@@ -15,6 +15,15 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+<<<<<<< HEAD
     "nodemon": "^3.1.9"
+=======
+    "prettier": "^3.4.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.1"
+>>>>>>> 00518aad689e877e844639d92cb233f336332007
   }
 }
