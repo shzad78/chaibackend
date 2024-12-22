@@ -3,6 +3,8 @@ import express, { json, urlencoded } from 'express';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.routes.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config({ path: "./.env" });
 
 const app = express();
 
