@@ -1,8 +1,7 @@
-import dotenv from 'dotenv'
-dotenv.config({ path: './.env' });  // Explicitly specify the path to .env file
 
 import express, { json, urlencoded } from 'express';
-import connectDB from './db/index.js';
+import cookieParser from 'cookie-parser';
+import userRouter from './routes/user.routes.js';
 import cors from 'cors';
 
 const app = express();
@@ -15,25 +14,12 @@ app.use(cors({
 
 // Middleware
 app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true, limit: "16kb" }));
+app.use(cookieParser());
+app.use(express.static("public"));
 
-// Connect to database
-connectDB()
-  .then(() => console.log('Database connected successfully'))
-  .catch(err => console.error('Database connection error:', err));
+// Routes
 
-// Basic route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the API' });
-});
+app.use("/api/v1/users", userRouter)
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something broke!' });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+export default app;
