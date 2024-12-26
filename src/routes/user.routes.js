@@ -11,8 +11,5 @@ const router = Router();
     ]),
     registerUser)
 
-/* router.get("/", (req, res) => {
-  res.send("Hello World");
-});
- */
+
 export default router;
